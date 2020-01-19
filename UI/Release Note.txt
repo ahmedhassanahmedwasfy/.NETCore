@@ -1,0 +1,3 @@
+Multi themes
+Localization
+PrimeNG Multi themable with data view component

@@ -1,0 +1,72 @@
+// themes - our custom or/and out of the box themes 
+@import 'themes';
+
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+@import '../../@security/auth/styles/all';
+
+// global app font size
+@import './font-size';
+
+// loading progress bar theme
+@import './pace.theme';
+
+@import './bootstrap-rtl';
+@import './CustomPrimeNg/theme';
+
+// install the framework and custom global styles
+@include nb-install() {
+
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+
+  // loading progress bar
+  @include ngx-pace-theme(); 
+
+  .ui-state-highlight{
+    border-color: nb-theme(color-success);
+    background-color: nb-theme(color-success);
+  }
+//  fix prime ng p droen down in nb card
+  .container{
+  overflow: -webkit-paged-x;
+ }
+  // fixed in rc.9 and can be removed after upgrade
+  .custom-control .custom-control-indicator {
+    border-radius: 50%; // TODO: quickfix for https://github.com/akveo/nebular/issues/275
+  }
+  @include nb-rtl() {
+    .pi-step-backward:before {
+      content: "\e917";
+      }
+      .pi-step-forward:before {
+      content: "\e916";
+      }
+      .pi-caret-left:before {
+      content: "\e905";
+      }
+      .pi-caret-right:before {
+      content: "\e904";
+      }
+  .main-btn{
+    padding: 0.75rem 1.5rem !important;
+  }}
+  .Absolute-Center {
+    width: 300px;
+   height: 300px;
+   position: absolute;
+   left: 50%;
+   top: 50%; 
+   z-index: 9999;
+   /* margin-left: -150px;
+   margin-top: -150px; */
+}
+
+ .ui-table .ui-table-tbody > tr > td{
+  word-wrap: break-word !important;
+}
+  @include bootstrap-rtl();
+};
+
+

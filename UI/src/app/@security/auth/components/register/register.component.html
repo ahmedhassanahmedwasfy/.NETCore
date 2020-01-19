@@ -1,0 +1,135 @@
+<nb-auth-block>
+        <h2 class="title">{{'SignUp' |translate}}</h2>
+        <form (ngSubmit)="register()" #form="ngForm">
+  
+          <div *ngIf="showMessages.error && errors && errors.length > 0 && !submitted"
+               class="alert alert-danger" role="alert">
+            <div><strong>{{'error'|translate}}</strong></div>
+            <div *ngFor="let error of errors">{{ error }}</div>
+          </div>
+          <div *ngIf="showMessages.success && messages && messages.length > 0 && !submitted"
+               class="alert alert-success" role="alert">
+            <div><strong>{{'success'|translate}}</strong></div>
+            <div *ngFor="let message of messages">{{ message }}</div>
+          </div>
+  
+          <div class="form-group">
+            <label for="input-name" class="sr-only">{{'Full_name' |translate}}</label>
+            <input name="fullName" [(ngModel)]="user.Name" id="input-name" #fullName="ngModel"
+                   class="form-control" placeholder="{{'Full_name' |translate}}"
+                   [class.form-control-danger]="fullName.invalid && fullName.touched"
+                   [required]="true"
+                   [minlength]="8"
+                   [maxlength]="50"
+                   autofocus>
+            <small class="form-text error" *ngIf="fullName.invalid && fullName.touched && fullName.errors?.required">
+              {{'Full_name_is_required'|translate}}
+            </small>
+            <small
+              class="form-text error"
+              *ngIf="fullName.invalid && fullName.touched && (fullName.errors?.minlength || fullName.errors?.maxlength)">
+              {{'Full_name_should_contains_MIN_MAX'|translate}} 
+              
+            </small>
+          </div>
+  
+          <div class="form-group">
+            <label for="input-email" class="sr-only">{{'Email'|translate}}</label>
+            <input name="email" [(ngModel)]="user.Email" id="input-email" #email="ngModel"
+                   class="form-control" placeholder="{{'Email'|translate}}" pattern=".+@.+\..+"
+                   [class.form-control-danger]="email.invalid && email.touched"
+                   [required]="true">
+            <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.required">
+           {{'Email_is_required'|translate}}
+            </small>
+            <small class="form-text error"
+                   *ngIf="email.invalid && email.touched && email.errors?.pattern">
+           {{'EmailFormat'|translate}} 
+            </small>
+          </div>
+          <div class="form-group">
+              <label for="input-mobile" class="sr-only">{{'mobile'|translate}}</label>
+              <input name="mobile" [(ngModel)]="user.mobile" id="input-mobile" #mobile="ngModel" class="form-control" placeholder="{{'mobile'|translate}}"
+                pattern="^01[0-2]{1}[0-9]{8}" [class.form-control-danger]="mobile.invalid && mobile.touched" [required]="true">
+              <small class="form-text error" *ngIf="mobile.invalid && mobile.touched && mobile.errors?.required">
+                {{'mobile_is_required'|translate}}
+              </small>
+              <small class="form-text error" *ngIf="mobile.invalid && mobile.touched && mobile.errors?.pattern">
+                {{'mobileFormat'|translate}}
+              </small>
+            </div>
+          <div class="form-group">
+            <label for="input-password" class="sr-only">{{'Password'|translate}}</label>
+            <input name="password" [(ngModel)]="user.Password" type="password" id="input-password"
+                   class="form-control" placeholder="{{'Password'|translate}}" #password="ngModel"
+                   [class.form-control-danger]="password.invalid && password.touched"
+                   [required]="true"
+                   [minlength]="8"
+                   [maxlength]="50">
+            <small class="form-text error" *ngIf="password.invalid && password.touched && password.errors?.required">
+                {{'Password_is_required'|translate}}
+            </small>
+            <small
+              class="form-text error"
+              *ngIf="password.invalid && password.touched && (password.errors?.minlength || password.errors?.maxlength)">
+             {{'password_min_max'|translate}} 
+            </small>
+          </div>
+  
+          <div class="form-group">
+            <label for="input-re-password" class="sr-only">{{'Confirm_Password'|translate}}</label>
+            <input
+              name="rePass" [(ngModel)]="user.confirmPassword" type="password" id="input-re-password"
+              class="form-control" placeholder="{{'Confirm_Password'|translate}}" #rePass="ngModel"
+              [class.form-control-danger]="(rePass.invalid || password.value != rePass.value) && rePass.touched"
+              [required]="true">
+            <small class="form-text error"
+                   *ngIf="rePass.invalid && rePass.touched && rePass.errors?.required">
+                   {{'Password_is_required'|translate}} 
+            </small>
+            <small
+              class="form-text error"
+              *ngIf="rePass.touched && password.value != rePass.value && !rePass.errors?.required">
+             {{'Password_does_not_match_the_confirm_password' |translate}}
+            </small>
+          </div>
+  
+          <div class="form-group accept-group col-sm-12" *ngIf="true">
+            <nb-checkbox name="terms" [(ngModel)]="user.terms" [required]="true">
+              {{'Agree_to'|translate}}
+               <a href="#" target="_blank"><strong>{{'Terms_Conditions'|translate}}</strong></a>
+            </nb-checkbox>
+          </div>
+  
+          <button [disabled]="submitted || !form.valid" class="btn btn-block btn-hero-success"
+                  [class.btn-pulse]="submitted">
+            {{'Register' | translate}}
+          </button>
+        </form>
+  
+        <!-- <div class="links">
+  
+          <ng-container  >
+            <small class="form-text">{{'Or_connect_with'|translate}} </small>
+  
+            <div class="socials">
+              <ng-container *ngFor="let socialLink of socialLinks">
+                <a *ngIf="socialLink.link"
+                   [routerLink]="socialLink.link"
+                   [attr.target]="socialLink.target"
+                   [attr.class]="socialLink.icon"
+                   [class.with-icon]="socialLink.icon">{{ socialLink.title }}</a>
+                <a *ngIf="socialLink.url"
+                   [attr.href]="socialLink.url"
+                   [attr.target]="socialLink.target"
+                   [attr.class]="socialLink.icon"
+                   [class.with-icon]="socialLink.icon">{{ socialLink.title }}</a>
+              </ng-container>
+            </div>
+          </ng-container>
+  
+          <small class="form-text">
+           {{'Alreadyhaveanaccount'|translate}} <a routerLink="../login"><strong> {{'SignIn'|translate}}</strong></a>
+          </small>
+        </div> -->
+      </nb-auth-block>

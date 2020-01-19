@@ -1,0 +1,31 @@
+<div class="header-container" [class.left]="position === 'normal'" [class.right]="position === 'inverse'">
+  <div class="logo-containter">
+    <a (click)="toggleSidebar()" href="#" class="navigation">
+      <i class="nb-menu"></i>
+    </a>
+    <div class="logo" (click)="goToHome()">
+      <i class="icodr" class="fa fa-user-md"></i>
+
+      {{'ApplicationName1' | translate }}
+      <span>{{'ApplicationName2' | translate }} </span>
+    </div>
+  </div>
+  <ngx-theme-switcher></ngx-theme-switcher>
+</div>
+
+<div class="header-container">
+  <!-- {{user!=undefined?user.image:'assets/images/user-male-circle-filled.png'}} -->
+
+  <ngx-layout-direction-switcher></ngx-layout-direction-switcher>
+  <nb-actions size="medium" [class.right]="position === 'normal'" [class.left]="position === 'inverse'">
+    <nb-action icon="nb-gear" class="toggle-layout" (click)="toggleSettings()"></nb-action>
+    <nb-action>
+      <nb-user *ngIf="userMenu" [nbContextMenu]="userMenu" [name]="user?.Name" [picture]="user&&user.Image?user.Image:'assets/images/user-male-circle-filled.png'"></nb-user>
+    </nb-action>
+    <nb-action class="control-item" disabled icon="nb-notifications"></nb-action>
+    <nb-action class="control-item" icon="nb-email"></nb-action>
+    <nb-action class="control-item">
+      <nb-search type="rotate-layout" (click)="startSearch()"></nb-search>
+    </nb-action>
+  </nb-actions>
+</div>

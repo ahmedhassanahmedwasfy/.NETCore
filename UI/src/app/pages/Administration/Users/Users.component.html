@@ -1,0 +1,106 @@
+<nb-card>
+  <nb-card-header> {{ 'User_Details' | translate }}
+  </nb-card-header>
+  <nb-card-body>
+    <div class="container">
+      <form #Form="ngForm">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputFirstName" style="color: red">*</label>
+              <label for="inputFirstName">{{'Name'|translate}}</label>
+              <input readonly required type="text" name="NameAr" class="form-control" [(ngModel)]="User.Name" id="Name" placeholder="{{'NameAr'|translate}}">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputFirstName" style="color: red">*</label>
+
+              <label for="inputLastName">{{'Email'|translate}}</label>
+              <input readonly required type="text" class="form-control" name="NameEn" id="NameEn" [(ngModel)]="User.Email" placeholder="{{'Email'|translate}}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <!-- <label for="UserTypeID" style="color: red">*</label> -->
+              <label for="UserTypeID">{{'UserType'|translate}}</label>
+              <select type="text" name="UserTypeID" class="form-control" [(ngModel)]="User.UserTypeID" id="Name">
+                <option   [ngValue]="null"   selected>{{'Choose' | translate}}</option>
+                <option *ngFor="let item of UserTypes" [ngValue]="item.ID">{{currentLang=='en'?item.NameEn:item.NameAr}}</option>
+              </select>
+
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-header> {{ 'Privilliges' | translate }}
+  </nb-card-header>
+  <nb-card-body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p-pickList [source]="source_privilliges" [target]="User.Privilliges" sourceHeader="{{'Available' | translate}}" targetHeader="{{'Selected' | translate}}"
+            [responsive]="true" filterBy="brand" dragdrop="false" dragdropScope="cars" sourceFilterPlaceholder="{{'Search'|translate}}"
+            targetFilterPlaceholder="{{'Search'|translate}}" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+            <ng-template let-item pTemplate="item">
+              <div class="ui-helper-clearfix">
+                <!-- <img src="https://picsum.photos/200/300/?random" style="display:inline-block;margin:2px 0 2px 2px" width="48"> -->
+                <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{item.NameEn}} - {{item.NameAr}} </div>
+              </div>
+            </ng-template>
+          </p-pickList>
+        </div>
+
+      </div>
+    </div>
+
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-header> {{ 'Groups' | translate }}
+  </nb-card-header>
+  <nb-card-body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p-pickList [source]="source_groups" [target]="User.Groups" sourceHeader="{{'Available' | translate}}" targetHeader="{{'Selected' | translate}}"
+            [responsive]="true" filterBy="brand" dragdrop="false" dragdropScope="cars" sourceFilterPlaceholder="{{'Search'|translate}}"
+            targetFilterPlaceholder="{{'Search'|translate}}" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+            <ng-template let-item pTemplate="item">
+              <div class="ui-helper-clearfix">
+                <!-- <img src="https://picsum.photos/200/300/?random" style="display:inline-block;margin:2px 0 2px 2px" width="48"> -->
+                <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{item.NameEn}} - {{item.NameAr}} </div>
+              </div>
+            </ng-template>
+          </p-pickList>
+        </div>
+
+      </div>
+    </div>
+
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <button [disabled]="!Form.form.valid" class="btn btn-success" (click)="save()"> {{'Save' |translate}}</button>
+
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

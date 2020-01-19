@@ -1,0 +1,32 @@
+<DesfirePICC EncodingType="DES" HardwareInfo="{x:Null}" SoftwareInfo="{x:Null}" ID="{x:Null}" ShouldChangeMasterKeySettings="False" CardType="DESFIRE_2K" xmlns="clr-namespace:GET.Encoding.Mifare;assembly=GET.Encoding.Mifare.DesfireModel" xmlns:getemd="clr-namespace:GET.Encoding.Mifare.Desfire;assembly=GET.Encoding.Mifare.DesfireCommands" xmlns:getcm="clr-namespace:GET.ContainerModel;assembly=GET.ContainerModel" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:getem="clr-namespace:GET.Encoding.Mifare;assembly=GET.Encoding.Mifare.DesfireCommands">
+  <DesfirePICC.MasterKey>
+    <PiccMasterKey Value="00000000000000000000000000000000" KeyNo="0" getcm:Model.Role="MasterKey" getcm:Model.Name="Master Key" getcm:Model.IsStaticName="True">
+      <PiccMasterKey.KeySettings>
+        <getemd:PiccMasterKeySettings IsAllowedtoChangeMasterKey="True" IsFreeDirectoryListAccess="True" IsFreeCreateDelete="True" IsConfigurationChangable="True" />
+      </PiccMasterKey.KeySettings>
+    </PiccMasterKey>
+  </DesfirePICC.MasterKey>
+  <DesfireApplication AID="1" EncodingType="DES" getcm:Model.Name="1">
+    <DesfireApplication.Keys>
+      <ApplicationMasterKey Value="00000000000000000000000000000000" KeyNo="0" getcm:Model.Role="MasterKey" getcm:Model.Name="Master Key" getcm:Model.IsStaticName="True">
+        <ApplicationMasterKey.KeySettings>
+          <getemd:ApplicationMasterKeySettings KeyId="0" AccessRights="NEEDS_APPLICATION_MASTER_KEY_AUTHENTICATION" IsAllowedtoChangeMasterKey="True" IsFreeDirectoryListAccess="True" IsFreeCreateDelete="True" IsConfigurationChangable="True" />
+        </ApplicationMasterKey.KeySettings>
+      </ApplicationMasterKey>
+    </DesfireApplication.Keys>
+    <DesfireApplication.Files>
+      <DesfireStandardFile Offset="0" FileSize="50" CreateAction="OVERWRITE_IF_EXISTS" FileNumber="0" CommunicationType="PLAIN" getcm:Model.Name="0" getcm:Model.IsStore="True" getcm:Model.AcceptableType="byte[]" getcm:Model.Size="50">
+        <DesfireStandardFile.Data>
+          <x:Array Type="s:Byte" />
+        </DesfireStandardFile.Data>
+        <DesfireStandardFile.FileSettings>
+          <getemd:StandardFileSettings FileSize="50" CommunicationType="PLAIN">
+            <getemd:StandardFileSettings.AccessRights>
+              <getem:AccessRights ReadAccessKeyNo="14" WriteAccessKeyNo="14" ReadWriteAccessKeyNo="14" ChangeAccessRightsKeyNo="14" />
+            </getemd:StandardFileSettings.AccessRights>
+          </getemd:StandardFileSettings>
+        </DesfireStandardFile.FileSettings>
+      </DesfireStandardFile>
+    </DesfireApplication.Files>
+  </DesfireApplication>
+</DesfirePICC>

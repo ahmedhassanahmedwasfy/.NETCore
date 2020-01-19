@@ -1,0 +1,31 @@
+<nb-layout>
+    <nb-layout-column>
+        <nb-card>
+            <nb-card-header>
+             
+                      <div class="float-left">  
+                        <a href="#" (click)="back()">
+                            <i class="nb-arrow-thin-left"></i>
+                        </a>
+
+                      </div>
+                    <div class="float-right">  
+                        <ngx-layout-direction-switcher></ngx-layout-direction-switcher>
+                       
+
+                     </div>  
+                     <!-- <div class="float-left">  
+                            <ngx-theme-switcher></ngx-theme-switcher>
+
+    
+                         </div>     -->
+                   
+            </nb-card-header>
+            <nb-card-body>
+                <div class="flex-centered col-xl-4 col-lg-6 col-md-8 col-sm-12">
+                    <router-outlet></router-outlet>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>

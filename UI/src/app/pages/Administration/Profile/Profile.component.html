@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-3"> 
+    <nb-card>
+      <nb-card-header> {{'Image' | translate}} </nb-card-header>
+      <nb-card-body>
+        <img    (click)="FileUpload.click()"  style=" cursor:pointer;max-width: 100% ;" [src]="this.user.Image?this.user.Image :'assets/images/user-male-circle-filled.png'">
+       <input [hidden]="true" (change)="ProfileImageChange($event)" accept="image/*"  #FileUpload type="file">
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-9">
+    <nb-card>
+      <nb-card-header> {{'profile' | translate}} </nb-card-header>
+      <nb-card-body>
+        <form (ngSubmit)="updateProfile()" #form="ngForm">
+
+          <div *ngIf="showMessages.error && errors && errors.length > 0 && !submitted" class="alert alert-danger" role="alert">
+            <div>
+              <strong>{{'error'|translate}}</strong>
+            </div>
+            <div *ngFor="let error of errors">{{ error }}</div>
+          </div>
+          <div *ngIf="showMessages.success && messages && messages.length > 0 && !submitted" class="alert alert-success" role="alert">
+            <div>
+              <strong>{{'success'|translate}}</strong>
+            </div>
+            <div *ngFor="let message of messages">{{ message }}</div>
+          </div>
+
+          <div class="form-group">
+            <label for="input-name" class="sr-only">{{'Full_name' |translate}}</label>
+            <input name="fullName" [(ngModel)]="user.Name" id="input-name" #fullName="ngModel" class="form-control" placeholder="{{'Full_name' |translate}}"
+              [class.form-control-danger]="fullName.invalid && fullName.touched" [required]="true" [minlength]="8" [maxlength]="50"
+              autofocus>
+            <small class="form-text error" *ngIf="fullName.invalid && fullName.touched && fullName.errors?.required">
+              {{'Full_name_is_required'|translate}}
+            </small>
+            <small class="form-text error" *ngIf="fullName.invalid && fullName.touched && (fullName.errors?.minlength || fullName.errors?.maxlength)">
+              {{'Full_name_should_contains_MIN_MAX'|translate}}
+
+            </small>
+          </div>
+
+          <div class="form-group">
+            <label for="input-email" class="sr-only">{{'Email'|translate}}</label>
+            <input name="email" [(ngModel)]="user.Email" id="input-email" #email="ngModel" class="form-control" placeholder="{{'Email'|translate}}"
+              pattern=".+@.+\..+" [class.form-control-danger]="email.invalid && email.touched" [required]="true">
+            <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.required">
+              {{'Email_is_required'|translate}}
+            </small>
+            <small class="form-text error" *ngIf="email.invalid && email.touched && email.errors?.pattern">
+              {{'EmailFormat'|translate}}
+            </small>
+          </div>
+
+          <div class="form-group">
+            <label for="input-mobile" class="sr-only">{{'mobile'|translate}}</label>
+            <input name="mobile" [(ngModel)]="user.Mobile" id="input-mobile" #mobile="ngModel" class="form-control" placeholder="{{'mobile'|translate}}"
+              pattern="^01[0-2]{1}[0-9]{8}" [class.form-control-danger]="mobile.invalid && mobile.touched" [required]="true">
+            <small class="form-text error" *ngIf="mobile.invalid && mobile.touched && mobile.errors?.required">
+              {{'mobile_is_required'|translate}}
+            </small>
+            <small class="form-text error" *ngIf="mobile.invalid && mobile.touched && mobile.errors?.pattern">
+              {{'mobileFormat'|translate}}
+            </small>
+          </div>
+          <!-- <div class="form-group">
+            <label for="input-password" class="sr-only">{{'Password'|translate}}</label>
+            <input name="password" [(ngModel)]="user.Password" type="password" id="input-password" class="form-control" placeholder="{{'Password'|translate}}"
+              #password="ngModel" [class.form-control-danger]="password.invalid && password.touched" [required]="true" [minlength]="8"
+              [maxlength]="50">
+            <small class="form-text error" *ngIf="password.invalid && password.touched && password.errors?.required">
+              {{'Password_is_required'|translate}}
+            </small>
+            <small class="form-text error" *ngIf="password.invalid && password.touched && (password.errors?.minlength || password.errors?.maxlength)">
+              {{'password_min_max'|translate}}
+            </small>
+          </div> -->
+
+
+
+
+          <button [disabled]="submitted || !form.valid" class="btn btn-block btn-hero-success" [class.btn-pulse]="submitted">
+            {{'save' | translate}}
+          </button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+// @nebular theming framework
+@import '~@nebular/theme/styles/theming';
+// @nebular out of the box themes
+@import '~@nebular/theme/styles/themes';
+
+// which themes you what to enable (empty to enable all)
+$nb-enabled-themes: (default, cosmic, corporate);
+
+$nb-themes: nb-register-theme((
+  toaster-success:#40dc7e,
+ scrollbar-fg:#EE3B24,
+ header-bg: rgba(0,0,0,0.8), 
+ color-success:#EE3B24,
+ color-fg-highlight:#ee3b24,
+ link-color:#EE3B24,
+ link-color-hover:rgb(255, 0, 0),
+ //color-fg-heading:#EE3B24,
+   smart-table-bg-active:#ffe6e6,
+   smart-table-bg-even:#fcf5f5,
+ header-fg:color-white,
+ // app wise variables for each theme
+  sidebar-header-gap: 2rem,
+  sidebar-header-height: initial,
+  layout-content-width: 1400px, 
+  
+  font-main: Roboto,
+  font-secondary:  Exo,
+  switcher-background: rgba(0,0,0,0),
+  switcher-background-percentage: 0%,
+  drops-icon-line-gadient: -webkit-linear-gradient(#EE3B24, #EE3B24),
+), default, default);
+
+$nb-themes: nb-register-theme((
+  // app wise variables for each theme
+  sidebar-header-gap: 2rem,
+  sidebar-header-height: initial,
+  layout-content-width: 1400px,
+
+  font-main: Roboto,
+  font-secondary: Exo,
+
+  switcher-background: #4e41a5,
+  switcher-background-percentage: 14%,
+  drops-icon-line-gadient: -webkit-linear-gradient(#a258fe, #7958fa),
+), cosmic, cosmic);
+
+$nb-themes: nb-register-theme((
+  // app wise variables for each theme
+  sidebar-header-gap: 2rem,
+  sidebar-header-height: initial,
+  layout-content-width: 1400px,
+
+  font-main: Roboto,
+  font-secondary: Exo,
+
+  switcher-background: #2b2d34,
+  switcher-background-percentage: 14%,
+  drops-icon-line-gadient: -webkit-linear-gradient(#e9e8eb, #a7a2be),
+), corporate, corporate);
