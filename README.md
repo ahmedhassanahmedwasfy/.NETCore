@@ -5,7 +5,7 @@ docker build . -t="front"
 docker run -d --name front -p 4200:80 front
 
 # backend
-5>docker build -f "docker file full path contains docker file name" --force-rm -t targetnetcore  --label "com.microsoft.created-by=visual-studio" --label "com.microsoft.visual-studio.project-name=Target NETCORE" ".sln folder path"
+docker build -f "docker file full path contains docker file name" --force-rm -t targetnetcore  --label "com.microsoft.created-by=visual-studio" --label "com.microsoft.visual-studio.project-name=Target NETCORE" ".sln folder path"
 
 ex:
 
