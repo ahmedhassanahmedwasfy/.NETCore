@@ -33,6 +33,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include=".dockerignore" />
     <Content Include=".editorconfig" />
     <Content Include=".gitignore" />
     <Content Include=".stylelintrc.json" />
@@ -42,6 +43,7 @@
     <Content Include="CODE_OF_CONDUCT.md" />
     <Content Include="CONTRIBUTING.md" />
     <Content Include="DEV_DOCS.md" />
+    <Content Include="Dockerfile" />
     <Content Include="e2e\tsconfig.e2e.json" />
     <Content Include="LICENSE" />
     <Content Include="package-lock.json" />

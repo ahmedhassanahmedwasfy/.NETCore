@@ -16,13 +16,15 @@ import { UtilityService } from '../../../@core/services/Utility.service';
 export class GroupsComponent implements OnInit {
   source;
   ID;
-  Group = { Privilliges: [] };
+  Group: any = {};
   sucess_msg;
   failed_msg;
   constructor(
     private UtilityService: UtilityService,
     private messageService: MessageService, private translate: TranslateService,
-    private PrivilligesServiceService: PrivilligesServiceService, private _usersGroupsService: UsersGroupsService, private activatedRoute: ActivatedRoute, private _paramateresService: ParamateresService) { }
+    private PrivilligesServiceService: PrivilligesServiceService, private _usersGroupsService: UsersGroupsService, private activatedRoute: ActivatedRoute, private _paramateresService: ParamateresService) {
+    this.Group.Privilliges = [] ;
+  }
 
   async ngOnInit() {
     this.UtilityService.ShowSpinner();

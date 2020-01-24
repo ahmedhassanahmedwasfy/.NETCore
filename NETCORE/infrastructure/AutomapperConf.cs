@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using BL.Dto;
-using BL.Dto.Menu;
+using CORE.BL.Dto;
+using CORE.BL.Dto.Menu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +35,7 @@ namespace Target_NETCORE.infrastructure
 
             #endregion
             #region BL
-            BL.infrastructure.AutomapperConf.Mapping(cfg);
+            CORE.BL.infrastructure.AutomapperConf.Mapping(cfg);
             #endregion
             #region Reports
 

@@ -22,8 +22,8 @@ using Autofac.Extensions.DependencyInjection;
 using Target_NETCORE.DI.autofac;
 using System.Configuration;
 using Microsoft.Extensions.Options;
-using Common.infrastructure;
-using Common.Options;
+using CORE.common.infrastructure;
+using CORE.common.Options;
 using AutoMapper;
 using Target_NETCORE.infrastructure;
 using Microsoft.Extensions.Logging;
@@ -87,14 +87,16 @@ namespace WebApplication1
             //string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); 
             foreach (string dll in Directory.GetFiles(basePath, "Target_NETCORE.dll"))
                 allAssemblies.Add(Assembly.LoadFrom(dll));
-            foreach (string dll in Directory.GetFiles(basePath, "BL.dll"))
+            foreach (string dll in Directory.GetFiles(basePath, "CORE.BL.dll"))
                 allAssemblies.Add(Assembly.LoadFrom(dll));
-            foreach (string dll in Directory.GetFiles(basePath, "Common.dll"))
+            foreach (string dll in Directory.GetFiles(basePath, "CORE.common.dll"))
                 allAssemblies.Add(Assembly.LoadFrom(dll));
-            foreach (string dll in Directory.GetFiles(basePath, "Urf.Repository.Pattern.dll"))
+            foreach (string dll in Directory.GetFiles(basePath, "CORE.Repository.dll"))
                 allAssemblies.Add(Assembly.LoadFrom(dll));
 
-
+            allAssemblies.ForEach(c => { log.Error(c.FullName); });
+            log.Error(Directory.GetFiles(basePath, "CORE.BL.dll").Length);
+            log.Error( basePath );
             //    containerBuilder.RegisterAssemblyTypes(allAssemblies.ToArray())
             //.Where(x => x.IsClass && x.IsPublic && x.GetInterfaces().Where(c => c.Name.Contains(x.Name) && c.Name.ToLower().StartsWith("i")).Any())
             //.As(t => t.GetInterfaces().FirstOrDefault(c => c.Name.Contains(t.Name) && c.Name.ToLower().StartsWith("i")));//.InstancePerDependency();
@@ -113,8 +115,8 @@ namespace WebApplication1
             #endregion
             #region OTHERlAYERS
 
-            BL.infrastructure.DIRegister.Register(services);
-            BL.infrastructure.AutofacRegister.Register(containerBuilder);
+            CORE.BL.infrastructure.DIRegister.Register(services);
+            CORE.BL.infrastructure.AutofacRegister.Register(containerBuilder);
 
             #endregion
 

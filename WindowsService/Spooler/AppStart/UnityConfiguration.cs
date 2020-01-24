@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Microsoft.Practices.Unity;
-using BL;
+using CORE.BL;
 using Unity;
 using System.Reflection;
 using Unity.RegistrationByConvention;
@@ -17,11 +17,11 @@ using Unity.Attributes;
 using Unity.Interception.Interceptors.InstanceInterceptors.InterfaceInterception;
 using Unity.Registration;
 using Unity.Interception.Interceptors.TypeInterceptors.VirtualMethodInterception;
-using Common;
+using CORE.common;
 using System.IO;
 using Newtonsoft.Json;
 using Spooler.Configuration;
-using BL.Configuration; 
+using CORE.BL.Configuration; 
 
 namespace Spooler.App_Start
 {

@@ -1,6 +1,6 @@
-﻿using BL.Dto;
-using BL.GenericClasses;
-using BL.Services;
+﻿using CORE.BL.Dto;
+using CORE.BL.GenericClasses;
+using CORE.BL.Services;
 using log4net;
 using Target_NETCORE.ActionFilters;  
 using Target_NETCORE.Models.API.UserManagement;

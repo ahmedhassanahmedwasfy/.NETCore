@@ -1,7 +1,7 @@
-﻿using BL.Configuration;
-using BL.Services.Settings;
+﻿using CORE.BL.Configuration;
+using CORE.BL.Services.Settings;
 using log4net;
-using Repository.Repositories;
+using CORE.Repository.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

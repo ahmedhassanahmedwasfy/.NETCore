@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.DirectoryServices.AccountManagement" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CORE.common\CORE.common.csproj" />
+    <ProjectReference Include="..\CORE.DAL\CORE.DAL.csproj" />
+    <ProjectReference Include="..\CORE.Repository\CORE.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BL.ActiveDirectory;
-using BL.Dto;
-using BL.GenericClasses;
-using BL.Services.UserManagement;
-using Common.Helpers;
+using CORE.BL.ActiveDirectory;
+using CORE.BL.Dto;
+using CORE.BL.GenericClasses;
+using CORE.BL.Services.UserManagement;
+using CORE.common.Helpers;
 using log4net;
 using Microsoft.AspNetCore.Mvc;
 using Target_NETCORE.ActionFilters;

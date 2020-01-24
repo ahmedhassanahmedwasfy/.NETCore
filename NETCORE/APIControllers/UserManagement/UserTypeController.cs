@@ -1,5 +1,5 @@
-﻿using BL.GenericClasses;
-using BL.Services;
+﻿using CORE.BL.GenericClasses;
+using CORE.BL.Services;
 using Microsoft.AspNetCore.Mvc;
 using Target_NETCORE.ActionFilters;  
 

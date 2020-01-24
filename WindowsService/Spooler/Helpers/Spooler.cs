@@ -1,8 +1,8 @@
-﻿using BL.Configuration;
-using BL.Dto;
-using BL.Services;
-using Common.Constants;
-using Common.Enums;
+﻿using CORE.BL.Configuration;
+using CORE.BL.Dto;
+using CORE.BL.Services;
+using CORE.common.Constants;
+using CORE.common.Enums;
 using Spooler.App_Start;
 using log4net; 
 using System;

@@ -5,17 +5,17 @@ using log4net;
 using Unity;
 using Spooler.App_Start;
 using System.IO;
-using BL.Services;
+using CORE.BL.Services;
 using System.Threading.Tasks;
 using System;
-using BL.Dto;
+using CORE.BL.Dto;
 using System.Collections.Generic;
 using AutoMapper;
 using Spooler.Configuration;
-using Repository.Repositories;
-using BL.Services.Settings; 
+using CORE.Repository.Repositories;
+using CORE.BL.Services.Settings; 
 using System.Linq;
-using BL.Configuration;
+using CORE.BL.Configuration;
 using Spooler.Helpers;
 
 namespace Spooler

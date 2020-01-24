@@ -1,4 +1,4 @@
-﻿using BL.Dto;
+﻿using CORE.BL.Dto;
 using Target_NETCORE.APIControllers;
 using Newtonsoft.Json;
 using System;

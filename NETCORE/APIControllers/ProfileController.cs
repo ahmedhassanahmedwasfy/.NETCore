@@ -1,6 +1,6 @@
-﻿using BL.Dto;
-using BL.GenericClasses;
-using BL.Services.Profile;
+﻿using CORE.BL.Dto;
+using CORE.BL.GenericClasses;
+using CORE.BL.Services.Profile;
 using Target_NETCORE.ActionFilters; 
 using Microsoft.AspNetCore.Mvc;
 

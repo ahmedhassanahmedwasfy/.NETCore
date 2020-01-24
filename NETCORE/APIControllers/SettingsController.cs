@@ -1,6 +1,6 @@
-﻿using BL.Dto.Settings;
-using BL.GenericClasses;
-using BL.Services.Settings;
+﻿using CORE.BL.Dto.Settings;
+using CORE.BL.GenericClasses;
+using CORE.BL.Services.Settings;
 using log4net;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using BL.Dto;
-using BL.Dto.Menu;
+using CORE.BL.Dto;
+using CORE.BL.Dto.Menu;
  
 using System;
 using System.Collections.Generic;

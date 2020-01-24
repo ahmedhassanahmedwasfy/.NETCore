@@ -1,9 +1,9 @@
 ﻿
-using BL.Dto;
-using BL.Dto.Menu;
-using BL.GenericClasses;
-using BL.Services;
-using BL.Services.Menu;
+using CORE.BL.Dto;
+using CORE.BL.Dto.Menu;
+using CORE.BL.GenericClasses;
+using CORE.BL.Services;
+using CORE.BL.Services.Menu;
 using log4net;
 using Target_NETCORE.ActionFilters;
 using Target_NETCORE.Models.ViewModels.Menu;

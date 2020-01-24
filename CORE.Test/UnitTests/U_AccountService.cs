@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http; 
-using BL.Services.UserManagement;
-using DAL.DBContext;
+using CORE.BL.Services.UserManagement;
+using CORE.DAL.DBContext;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Repository.UOW;
+using CORE.Repository.UOW;
 using Target_NETCORE.APIControllers;
 
 namespace CORE.Test.UnitTests
