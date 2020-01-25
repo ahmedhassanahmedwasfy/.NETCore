@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: core-front-deployment
+    
+spec:
+    template:
+       metadata:
+          name: core-front-pod
+          labels:
+              app: core-front
+              type: angularapp
+              
+       spec:
+         containers:
+           - name: front
+             image: front:latest
+             imagePullPolicy: IfNotPresent
+             ports:
+               - containerPort: 80
+                 protocol: TCP
+    replicas: 4
+    selector:
+      matchLabels:
+         app: core-front
+         type: angularapp

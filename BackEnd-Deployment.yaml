@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: core-backend-deployment
+    
+spec:
+    template:
+       metadata:
+          name: core-backend-pod
+          labels:
+              app: core-backend
+              type: netcoreapp
+              
+       spec:
+         containers:
+           - name: backend
+             image: targetnetcore:latest
+             imagePullPolicy: IfNotPresent
+             ports:
+               - containerPort: 80
+                 protocol: TCP
+    replicas: 4
+    selector:
+      matchLabels:
+         app: core-backend
+         type: netcoreapp
