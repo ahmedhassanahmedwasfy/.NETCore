@@ -28,7 +28,12 @@ namespace CORE.Repository.UOW
             bool isMemory = _context.Database.IsInMemory();
             if (isMemory)
             {
+                _context.Database.Migrate();
+            }
+            else
+            {
                 _context.Database.EnsureCreated();
+
             }
             Repositories = new Dictionary<string, dynamic>();
             _log = log;
