@@ -1,4 +1,4 @@
-﻿using CORE.DAL.Models.UserManagement;
+﻿using CORE.Common.BaseClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace CORE.Repository.Repositories
+namespace CORE.Common.Repositories
 {
     public interface IRepositoryAsync<TEntity> : IRepository<TEntity> where TEntity : tbl_base
     {

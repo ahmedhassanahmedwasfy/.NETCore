@@ -1,14 +1,12 @@
-﻿using CORE.BL.Dto;
-using CORE.BL.Dto.Settings;
+﻿using CORE.BL.Dto; 
 using CORE.DAL.Models;
-using log4net;
-using CORE.Repository.Repositories;
-using CORE.Repository.UOW;
+using log4net; 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq;  
+using CORE.Common;
+using CORE.Common.Repositories;
+using CORE.Common.UOW;
 
 namespace CORE.BL.Services.Settings
 {

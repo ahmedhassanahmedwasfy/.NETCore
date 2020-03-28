@@ -1,5 +1,6 @@
 namespace CORE.DAL.Models
 {
+    using CORE.Common.BaseClasses;
     using CORE.DAL.Models.UserManagement;
     using System;
     using System.Collections.Generic;

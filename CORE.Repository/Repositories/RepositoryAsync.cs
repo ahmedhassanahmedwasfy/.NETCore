@@ -5,15 +5,15 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Migrations;
-using CORE.Repository.UOW;
 
 using log4net;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using CORE.DAL.Models.UserManagement;
-using System.Text;
 using System.Reflection;
 using System.ComponentModel.DataAnnotations;
+using CORE.Common.Repositories;
+using CORE.Common.UOW;
+using CORE.Common.BaseClasses;
+
 namespace CORE.Repository.Repositories
 {
     public class RepositoryAsync<TEntity> : IRepositoryAsync<TEntity> where TEntity : tbl_base

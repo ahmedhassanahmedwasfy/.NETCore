@@ -1,4 +1,8 @@
-﻿using CORE.DAL.Models.UserManagement;
+﻿using CORE.Common;
+using CORE.Common.BaseClasses;
+using CORE.Common.Repositories;
+using CORE.Common.UOW;
+using CORE.DAL.Models.UserManagement;
 using CORE.Repository.Repositories;
 using CORE.Repository.UOW;
 using System;

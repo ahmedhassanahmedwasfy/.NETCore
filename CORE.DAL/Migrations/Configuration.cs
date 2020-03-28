@@ -15,6 +15,7 @@
     using static System.Net.WebRequestMethods;
     using CORE.common.Helpers;
     using CORE.common.infrastructure;
+    using CORE.Common.BaseClasses;
 
     public static class Configuration
     {

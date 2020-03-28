@@ -1,11 +1,11 @@
-﻿using CORE.DAL.Models.UserManagement;
-using CORE.Repository.Repositories;
+﻿using CORE.Common.BaseClasses;
+using CORE.Common.Repositories;
 using System;
 using System.Threading;
 using System.Threading.Tasks; 
 
 
-namespace CORE.Repository.UOW
+namespace CORE.Common.UOW
 {
     public interface IUnitOfWorkAsync : IUnitOfWork
     {

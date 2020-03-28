@@ -1,5 +1,4 @@
-﻿using CORE.DAL.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -7,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace CORE.BL.Services
+namespace CORE.Common
 {
     public interface IbaseService
     {

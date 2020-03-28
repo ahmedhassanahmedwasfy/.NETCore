@@ -1,10 +1,10 @@
-﻿using CORE.DAL.Models.UserManagement;
-using CORE.Repository.Repositories;
+﻿using CORE.Common.BaseClasses;
+using CORE.Common.Repositories;
 using System;
 using System.Data; 
 
 
-namespace CORE.Repository.UOW
+namespace CORE.Common.UOW
 {
     public interface IUnitOfWork : IDisposable
     {

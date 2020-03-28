@@ -12,6 +12,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using CORE.Common;
+using CORE.Common.Repositories;
+using CORE.Common.UOW;
 
 namespace CORE.BL.Services.Menu
 {

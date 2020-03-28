@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CORE.DAL.Models.UserManagement
+namespace CORE.Common.BaseClasses
 {
     public class tbl_Identity
     {

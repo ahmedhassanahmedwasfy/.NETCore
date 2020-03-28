@@ -1,4 +1,5 @@
-﻿using CORE.DAL.Models.UserManagement;
+﻿using CORE.Common.BaseClasses;
+using CORE.DAL.Models.UserManagement;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;

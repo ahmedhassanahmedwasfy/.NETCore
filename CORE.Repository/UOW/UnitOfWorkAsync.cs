@@ -12,6 +12,9 @@ using CORE.Repository.Repositories;
 using log4net;
 using CORE.DAL.Models.UserManagement;
 using Microsoft.EntityFrameworkCore.Storage;
+using CORE.Common.UOW;
+using CORE.Common.Repositories;
+using CORE.Common.BaseClasses;
 //using CORE.commonServiceLocator;
 
 namespace CORE.Repository.UOW

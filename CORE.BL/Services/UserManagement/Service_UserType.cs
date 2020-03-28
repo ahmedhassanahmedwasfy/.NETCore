@@ -13,6 +13,8 @@ using CORE.DAL.Models.UserManagement;
 using CORE.Repository.UOW;
 using Unity;
 using CORE.BL.Dto.UserManagement;
+using CORE.Common;
+using CORE.Common.UOW;
 
 namespace CORE.BL.Services
 {

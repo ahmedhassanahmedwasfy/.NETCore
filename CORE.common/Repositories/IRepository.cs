@@ -1,11 +1,11 @@
-﻿using CORE.DAL.Models.UserManagement;
+﻿using CORE.Common.BaseClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
 
-namespace CORE.Repository.Repositories
+namespace CORE.Common.Repositories
 {
     public interface IRepository<TEntity> where TEntity : tbl_base
     {

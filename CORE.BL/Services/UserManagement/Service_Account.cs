@@ -12,6 +12,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CORE.DAL.Models.UserManagement;
+using CORE.Common;
+using CORE.Common.UOW;
+using CORE.Common.Repositories;
 //using System.Data.Entity.Core.Objects;
 
 namespace CORE.BL.Services.UserManagement

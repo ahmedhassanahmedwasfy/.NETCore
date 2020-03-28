@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using CORE.BL.Dto;
 using CORE.BL.Services;
 using CORE.BL.Services.UserManagement;
+using CORE.Common;
 using Jose;
 using log4net;
 using Microsoft.AspNetCore.Mvc;

@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CORE.Common;
+using CORE.Common.UOW;
 
 namespace CORE.BL.Services.Settings
 {

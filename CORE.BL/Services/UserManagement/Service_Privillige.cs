@@ -12,6 +12,9 @@ using log4net;
 using CORE.DAL.Models.UserManagement;
 using CORE.Repository.UOW;
 using Unity;
+using CORE.Common;
+using CORE.Common.UOW;
+
 namespace CORE.BL.Services
 {
     public interface IService_Privillige :  IDisposable, IbaseService

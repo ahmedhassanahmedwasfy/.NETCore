@@ -13,6 +13,9 @@ using CORE.DAL.Models.UserManagement;
 using CORE.Repository.UOW;
 using Unity;
 using Microsoft.EntityFrameworkCore;
+using CORE.Common;
+using CORE.Common.Repositories;
+using CORE.Common.UOW;
 
 namespace CORE.BL.Services
 {
