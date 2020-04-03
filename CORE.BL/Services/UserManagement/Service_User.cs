@@ -24,9 +24,7 @@ namespace CORE.BL.Services
         IEnumerable<dto_User> GetPage(int pageNumber, int pageSize, out int totalCustomerCount);
         dto_User Get(Guid ID);
         Guid Create(dto_User entity);
-        void Edit(dto_User entity);
-        void updategroups(List<dto_Group> selectedGroups, Guid itemId);
-        void UpdatePrivilliges(List<dto_Privillige> checkedPrivilliges, Guid itemId);
+        void Edit(dto_User entity); 
         void CreateOREdit(dto_User entity);
         void Remove(dto_User entity);
         void ChangePassword(Guid iD, string password);
@@ -88,75 +86,7 @@ namespace CORE.BL.Services
 
             return users;
         }
-
-        public void updategroups(List<dto_Group> selectedGroups, Guid itemId)
-        {
-            this.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
-
-            var repositoryuser = _uow.RepositoryAsync<tbl_User>();
-            var user = repositoryuser.Queryable().Include(c => c.tbl_Privilligetbl_User).ThenInclude(c => c.Privillige).Include(c => c.tbl_Grouptbl_User).ThenInclude(c => c.Group)
-                .Where(c => c.ID == itemId).FirstOrDefault();
-         
-            var _RepositoryGroups = _uow.RepositoryAsync<tbl_Group>();
-            List<tbl_Group> Allgroups = _RepositoryGroups.Select().ToList();
-            List<Guid> CurrentIds = user.tbl_Grouptbl_User.Select(c => c.tbl_Group_ID).ToList();
-            List<Guid> Newids = selectedGroups.Select(x => x.ID).ToList();
-
-            List<Guid> IntersectIds = new List<Guid>();
-            foreach (var item in Newids)
-            {
-                if (!CurrentIds.Contains(item))
-                {
-                    IntersectIds.Add(item);
-                }
-            }
-
-            user.tbl_Grouptbl_User.Clear();
-
-            foreach (var item in Allgroups.Where(c => Newids.Contains(c.ID)))
-            {
-                _RepositoryGroups.Attach(item);
-                user.tbl_Grouptbl_User.Add(new tbl_Grouptbl_User() { tbl_Group_ID = item.ID, tbl_User_ID = user.ID });
-            }
-            repositoryuser.Update(user);
-            _uow.SaveChanges();
-            this.Commit();
-        }
-
-        public void UpdatePrivilliges(List<dto_Privillige> checkedPrivilliges, Guid itemId)
-        {
-            this.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
-
-            var repositoryuser = _uow.RepositoryAsync<tbl_User>();
-            var user = repositoryuser.Queryable().Include(c => c.tbl_Privilligetbl_User).ThenInclude(c => c.Privillige).Where(c => c.ID == itemId).FirstOrDefault();
-        
-
-            var _RepositoryPrivilliges = _uow.RepositoryAsync<tbl_Privillige>();
-            List<tbl_Privillige> Allprivilliges = _RepositoryPrivilliges.Select().ToList();
-            List<Guid> CurrentIds = user.tbl_Privilligetbl_User.Select(c => c.tbl_Privillige_ID).ToList();
-            List<Guid> Newids = checkedPrivilliges.Select(x => x.ID).ToList();
-
-            List<Guid> IntersectIds = new List<Guid>();
-            foreach (var item in Newids)
-            {
-                if (!CurrentIds.Contains(item))
-                {
-                    IntersectIds.Add(item);
-                }
-            }
-
-            user.tbl_Privilligetbl_User.Clear();
-
-            foreach (var item in Allprivilliges.Where(c => Newids.Contains(c.ID)))
-            {
-                _RepositoryPrivilliges.Attach(item);
-                user.tbl_Privilligetbl_User.Add(new tbl_Privilligetbl_User() { tbl_Privillige_ID = item.ID, tbl_User_ID = user.ID });
-            }
-            repositoryuser.Update(user);
-            _uow.SaveChanges();
-            this.Commit();
-        }
-
+ 
         public void CreateOREdit(dto_User entity)
         {
             this.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
@@ -195,9 +125,6 @@ namespace CORE.BL.Services
         public void ChangePassword(Guid iD, string password)
         {
             this.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
-
-            var container = CORE.BL.infrastructure.AutofacRegister.container;
-
             var _repository = _uow.RepositoryAsync<tbl_User>();
             var user = _repository.SelectNoTrackable(c => c.ID == iD).FirstOrDefault();
             if (user != null)

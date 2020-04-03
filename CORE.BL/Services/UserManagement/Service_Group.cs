@@ -24,8 +24,7 @@ namespace CORE.BL.Services
         IEnumerable<dto_Group> GetPage(int pageNumber, int pageSize, out int totalCustomerCount);
         dto_Group Get(Guid ID);
         Guid Create(dto_Group entity);
-        void Edit(dto_Group entity);
-        void UpdatePrivilliges(List<dto_Privillige> entity, Guid GroupID);
+        void Edit(dto_Group entity); 
         void CreateOREdit(dto_Group entity);
         void Remove(dto_Group entity);
 
@@ -75,45 +74,7 @@ namespace CORE.BL.Services
             _uow.SaveChanges();
 
         }
-        public void UpdatePrivilliges(List<dto_Privillige> entity, Guid GroupID)
-        {
-
-
-            this.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
-
-            var repositorygroup = _uow.RepositoryAsync<tbl_Group>();
-
-            var group =
-               _repo.Queryable().Include(c => c.tbl_Privilligetbl_Group).ThenInclude(c => c.Privillige)
-               .Where(c => c.ID == GroupID).FirstOrDefault();
-
-            var _RepositoryPrivilliges = _uow.RepositoryAsync<tbl_Privillige>();
-            List<tbl_Privillige> Allprivilliges = _RepositoryPrivilliges.Select().ToList();
-            List<Guid> CurrentIds = group.tbl_Privilligetbl_Group.Select(c => c.Privillige).Select(c => c.ID).ToList();
-            List<Guid> Newids = entity.Select(x => x.ID).ToList();
-
-            List<Guid> IntersectIds = new List<Guid>();
-            foreach (var item in Newids)
-            {
-                if (!CurrentIds.Contains(item))
-                {
-                    IntersectIds.Add(item);
-                }
-            }
-
-            group.tbl_Privilligetbl_Group.Clear();
-
-            foreach (var item in Allprivilliges.Where(c => Newids.Contains(c.ID)))
-            {
-                _RepositoryPrivilliges.Attach(item);
-                group.tbl_Privilligetbl_Group.Add(new tbl_Privilligetbl_Group() { tbl_Group_ID = group.ID, tbl_Privillige_ID = item.ID });
-            }
-            repositorygroup.Update(group);
-            _uow.SaveChanges();
-            this.Commit();
-
-        }
-
+       
         public IEnumerable<dto_Group> GetPage(int pageNumber, int pageSize, out int totalCustomerCount)
         {
             totalCustomerCount = _repo.Queryable().Include(c => c.tbl_Privilligetbl_Group).ThenInclude(c => c.Privillige)
