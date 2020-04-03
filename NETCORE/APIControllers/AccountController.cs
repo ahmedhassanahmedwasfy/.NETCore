@@ -15,7 +15,7 @@ using Target_NETCORE.Models.ViewModels;
 
 namespace Target_NETCORE.APIControllers
 {
- 
+
     public class AccountController : APIBaseController
     {
         Helper_AD _helper_activeDirectory;
@@ -29,7 +29,7 @@ namespace Target_NETCORE.APIControllers
             _emailHelper = emailHelper;
         }
         [HttpPost]
-        public IActionResult  Login([FromBody]dto_User input)
+        public IActionResult Login([FromBody]dto_User input)
         {
             GenericResponse _res = new GenericResponse();
             _res.FillSuccess();
@@ -115,7 +115,7 @@ namespace Target_NETCORE.APIControllers
         }
         [HttpPost]
         [JWTAuthentication_HS256]
-        public IActionResult  ChangePassword([FromBody]ChangePasswordVM model)
+        public IActionResult ChangePassword([FromBody]ChangePasswordVM model)
         {
             GenericResponse res = new GenericResponse();
             res.FillSuccess();
@@ -132,8 +132,8 @@ namespace Target_NETCORE.APIControllers
             return Ok(res);
         }
         [HttpPost]
-         
-        public IActionResult  ForgotPassword([FromBody]dto_User model)
+
+        public IActionResult ForgotPassword([FromBody]dto_User model)
         {
             GenericResponse res = new GenericResponse();
             res.FillSuccess();
@@ -164,6 +164,7 @@ namespace Target_NETCORE.APIControllers
         private void emptyUser(dto_User user)
         {
             user.Password = string.Empty;
+            user.Image = string.Empty;
             if (user.Groups != null)
             {
                 foreach (var item in user.Groups)
@@ -191,7 +192,7 @@ namespace Target_NETCORE.APIControllers
         }
 
         [HttpPost]
-        public IActionResult  register([FromBody]RegisterModel input)
+        public IActionResult register([FromBody]RegisterModel input)
         {
             GenericResponse response = new GenericResponse();
             response.FillSuccess();

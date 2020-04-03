@@ -61,13 +61,7 @@ namespace CORE.BL.Services
         }
         public dto_User Get(Guid ID)
         {
-            //var dbuser = base.Select(c => c.ID == ID, c => c.OrderBy(d => d.ID), new List<System.Linq.Expressions.Expression<Func<tbl_User, object>>>()
-            //{
-
-            //    //c => c.Privilliges, c => c.Groups
-
-            //}, 1, 1).FirstOrDefault();
-
+             
             var dbuser = _repo.Queryable().Include(c => c.tbl_Grouptbl_User).ThenInclude(c => c.Group).Include(c => c.tbl_Privilligetbl_User).ThenInclude(c => c.Privillige)
                  .Where(c => c.ID == ID).OrderBy(d => d.ID).AsNoTracking().FirstOrDefault();
             var user = Mapper.Map<dto_User>(dbuser);
@@ -102,11 +96,7 @@ namespace CORE.BL.Services
             var repositoryuser = _uow.RepositoryAsync<tbl_User>();
             var user = repositoryuser.Queryable().Include(c => c.tbl_Privilligetbl_User).ThenInclude(c => c.Privillige).Include(c => c.tbl_Grouptbl_User).ThenInclude(c => c.Group)
                 .Where(c => c.ID == itemId).FirstOrDefault();
-            //    .Select(c => c.ID == itemId, null, new List<System.Linq.Expressions.Expression<Func<tbl_User, object>>>()
-            //{
-            //    c => c.Privilliges, c => c.Groups
-            //}).FirstOrDefault();
-
+         
             var _RepositoryGroups = _uow.RepositoryAsync<tbl_Group>();
             List<tbl_Group> Allgroups = _RepositoryGroups.Select().ToList();
             List<Guid> CurrentIds = user.tbl_Grouptbl_User.Select(c => c.tbl_Group_ID).ToList();
@@ -139,11 +129,7 @@ namespace CORE.BL.Services
 
             var repositoryuser = _uow.RepositoryAsync<tbl_User>();
             var user = repositoryuser.Queryable().Include(c => c.tbl_Privilligetbl_User).ThenInclude(c => c.Privillige).Where(c => c.ID == itemId).FirstOrDefault();
-            //    Select(c => c.ID == itemId, null, new List<System.Linq.Expressions.Expression<Func<tbl_User, object>>>()
-            //{
-            //     c => c.Privilliges
-            //}).FirstOrDefault();
-
+        
 
             var _RepositoryPrivilliges = _uow.RepositoryAsync<tbl_Privillige>();
             List<tbl_Privillige> Allprivilliges = _RepositoryPrivilliges.Select().ToList();
@@ -180,39 +166,17 @@ namespace CORE.BL.Services
             var _UserRepo = _uow.RepositoryAsync<tbl_User>();
 
             var Mapped = AutoMapper.Mapper.Map<tbl_User>(entity);
-            Mapped.tbl_Privilligetbl_User = null;
-            Mapped.tbl_Grouptbl_User = null;
+            Mapped.tbl_Privilligetbl_User = new List<tbl_Privilligetbl_User>();
+            Mapped.tbl_Grouptbl_User = new List<tbl_Grouptbl_User>();
             _UserRepo.AddOrUpdate(Mapped);
             _uow.SaveChanges();
-            entity.ID = Mapped.ID;
-            Mapped = AutoMapper.Mapper.Map<tbl_User>(entity);
-            var DBPrivilliges = _PrivilligeRepo.Select(c =>
-                Mapped.tbl_Privilligetbl_User.Select(p => p.tbl_Privillige_ID).Contains(c.ID)
-            ).ToList();
-            var DBGroups = _GroupRepo.Select(c =>
-
-           Mapped.tbl_Grouptbl_User.Select(p => p.tbl_Group_ID).Contains(c.ID)
-            ).ToList();
-            //foreach (var item in DBPrivilliges)
-            //{
-            //    _PrivilligeRepo.Reload(item);
-            //}
-
-            //foreach (var item in DBGroups)
-            //{
-            //    _GroupRepo.Reload(item);
-            //}
-
+            
             var tbl_user = _UserRepo.Queryable().Include(c => c.tbl_Grouptbl_User).ThenInclude(c => c.Group).Include(c => c.tbl_Privilligetbl_User).ThenInclude(c => c.Privillige).Where(c => c.ID == Mapped.ID).FirstOrDefault();
-            //Select(c => c.ID == Mapped.ID, null
-            //, new List<System.Linq.Expressions.Expression<Func<tbl_User, object>>>()
-            //{
-            //    //c => c.Privilliges, c => c.Groups
-            //}).FirstOrDefault();
+
             tbl_user.tbl_Privilligetbl_User.RemoveAll(c => true);
-            tbl_user.tbl_Privilligetbl_User.AddRange(DBPrivilliges.Select(c => new tbl_Privilligetbl_User() { tbl_Privillige_ID = c.ID, tbl_User_ID = tbl_user.ID }));
+            tbl_user.tbl_Privilligetbl_User.AddRange(entity.Privilliges.Select(c => new tbl_Privilligetbl_User() { tbl_Privillige_ID = c.ID, tbl_User_ID = Mapped.ID }));
             tbl_user.tbl_Grouptbl_User.RemoveAll(c => true);
-            tbl_user.tbl_Grouptbl_User.AddRange(DBGroups.Select(c => new tbl_Grouptbl_User() { tbl_Group_ID = c.ID, tbl_User_ID = tbl_user.ID }));
+            tbl_user.tbl_Grouptbl_User.AddRange(entity.Groups.Select(c => new tbl_Grouptbl_User() { tbl_Group_ID = c.ID, tbl_User_ID = Mapped.ID }));
             _UserRepo.AddOrUpdate(tbl_user);
             _uow.SaveChanges();
             this.Commit();

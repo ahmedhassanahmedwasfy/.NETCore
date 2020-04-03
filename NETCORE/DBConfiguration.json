@@ -1,5 +1,5 @@
 ﻿{
-  "Stage": "memory",//"Testing", //"memory",
+  "Stage": "Testing", //"Testing", //"memory",
   "Production": "data source=.;initial catalog=MVCBaseDB;user id=sa;password=P@ssw0rd;MultipleActiveResultSets=True;App=EntityFramework",
-  "Testing": "data source=.;initial catalog=MVCBaseDB;user id=sa;password=P@ssw0rd;MultipleActiveResultSets=True;App=EntityFramework"
+  "Testing": "data source=127.0.0.1,2433;initial catalog=MVCBaseDB;user id=sa;password=P@ssw0rd;MultipleActiveResultSets=True;App=EntityFramework"
 }

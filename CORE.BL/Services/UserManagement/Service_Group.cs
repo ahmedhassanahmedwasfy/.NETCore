@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CORE.BL.Dto;
 using CORE.Repository.Repositories;
-using CORE.DAL.Models; 
+using CORE.DAL.Models;
 using CORE.BL.Services;
 using System;
 using System.Collections.Generic;
@@ -64,9 +64,6 @@ namespace CORE.BL.Services
             var dbgroup =
                 _repo.Queryable().Include(c => c.tbl_Privilligetbl_Group).ThenInclude(c => c.Privillige)
                 .Where(c => c.ID == ID).FirstOrDefault();
-            //    base.Select(c => c.ID == ID, null, new List<System.Linq.Expressions.Expression<Func<tbl_Group, object>>>() {
-            //  //  c => c.Privilliges
-            //}).FirstOrDefault();
             var group = AutoMapper.Mapper.Map<dto_Group>(dbgroup);
             return group;
         }
@@ -85,10 +82,6 @@ namespace CORE.BL.Services
             this.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
 
             var repositorygroup = _uow.RepositoryAsync<tbl_Group>();
-            //var group = repositorygroup.Select(c => c.ID == GroupID, null, new List<System.Linq.Expressions.Expression<Func<tbl_Group, object>>>() {
-            //    //c => c.Privilliges
-            //}).FirstOrDefault();
-
 
             var group =
                _repo.Queryable().Include(c => c.tbl_Privilligetbl_Group).ThenInclude(c => c.Privillige)
@@ -123,12 +116,8 @@ namespace CORE.BL.Services
 
         public IEnumerable<dto_Group> GetPage(int pageNumber, int pageSize, out int totalCustomerCount)
         {
-            //var Groups = this.SelectPaged(out totalCustomerCount, c => c.IsDeleted == false, c => c.OrderBy(x => x.ID), new List<System.Linq.Expressions.Expression<Func<tbl_Group, object>>>()
-            //{
-            //    //c => c.Privilliges
-            //}, pageNumber, pageSize);
             totalCustomerCount = _repo.Queryable().Include(c => c.tbl_Privilligetbl_Group).ThenInclude(c => c.Privillige)
-              .Where(c => c.IsDeleted == false).OrderBy(c => c.ID).Count();
+             .Where(c => c.IsDeleted == false).OrderBy(c => c.ID).Count();
             var Groups =
               _repo.Queryable().Include(c => c.tbl_Privilligetbl_Group).ThenInclude(c => c.Privillige)
               .Where(c => c.IsDeleted == false).OrderBy(c => c.ID).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
@@ -158,33 +147,12 @@ namespace CORE.BL.Services
             _GroupRepo.AddOrUpdate(Mapped);
             _uow.SaveChanges();
 
-            entity.ID = Mapped.ID;
-            Mapped = AutoMapper.Mapper.Map<tbl_Group>(entity);
-
-            var DBPrivilliges = _PrivilligeRepo.Select().ToList().Where(
-                c =>
-           Mapped.tbl_Privilligetbl_Group.Select(p => p.tbl_Privillige_ID).Contains(c.ID)
-            ).ToList();
-
-            var tbl_group = _GroupRepo.Queryable().Include(c => c.tbl_Privilligetbl_Group).ThenInclude(c=>c.Privillige).Where(c => c.ID == Mapped.ID).FirstOrDefault();
-
-
-            //    Select(c => c.ID == Mapped.ID, null, new List<System.Linq.Expressions.Expression<Func<tbl_Group, object>>>()
-            //{
-            //    c => c.tbl_Privilligetbl_Group,
-            //    c => c.tbl_Privilligetbl_Group.Select(x=>x.Privillige)
-
-            //}).FirstOrDefault();
+            var tbl_group = _GroupRepo.Queryable().Include(c => c.tbl_Privilligetbl_Group).ThenInclude(c => c.Privillige).Where(c => c.ID == Mapped.ID).FirstOrDefault();
 
             tbl_group.tbl_Privilligetbl_Group.RemoveAll(c => true);
-            tbl_group.tbl_Privilligetbl_Group.AddRange(DBPrivilliges.Select(c => new tbl_Privilligetbl_Group() { tbl_Privillige_ID = c.ID,tbl_Group_ID= tbl_group.ID }));
+            tbl_group.tbl_Privilligetbl_Group.AddRange(entity.Privilliges.Select(c => new tbl_Privilligetbl_Group() { tbl_Privillige_ID = c.ID, tbl_Group_ID = tbl_group.ID }));
             _GroupRepo.AddOrUpdate(tbl_group);
             _uow.SaveChanges();
-            bool test = false;
-            if (test)
-            {
-                throw new Exception();
-            }
             this.Commit();
         }
     }
